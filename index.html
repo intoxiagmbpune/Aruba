@@ -11,12 +11,15 @@
         rel="stylesheet">
     <style>
         :root {
-            --navy: #2d1112;      /* deep dark brown/red */
+            --navy: #2d1112;
+            /* deep dark brown/red */
             --navy-mid: #451b1c;
             --navy-light: #5c2526;
-            --rust: #9e1a1c;      /* deep red from the logo */
+            --rust: #9e1a1c;
+            /* deep red from the logo */
             --rust-dark: #7a1314;
-            --gold: #d16b25;      /* burnt orange/copper from the logo */
+            --gold: #d16b25;
+            /* burnt orange/copper from the logo */
             --gold-soft: #f2c7a9;
             --cream: #faf7f5;
             --slate: #4a3434;
@@ -186,15 +189,17 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(158, 26, 28, 0.3);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-cta::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             transition: all 0.6s ease;
         }
@@ -332,7 +337,7 @@
             left: -100%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             transition: left 0.6s ease;
         }
@@ -360,6 +365,19 @@
 
         .slide3 {
             background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&auto=format&q=80');
+        }
+
+        .slide4 {
+            background-image: url('banner1.jpg');
+        }
+
+        .slide5 {
+            background-image: url('banner2.jpg');
+        }
+
+        .slide4::before,
+        .slide5::before {
+            display: none !important;
         }
 
         .hero-nav {
@@ -990,6 +1008,116 @@
             background: linear-gradient(135deg, var(--rust), var(--rust-dark));
         }
 
+        /* ─── PROJECT MODAL ─── */
+        .proj-card { cursor: pointer; }
+        .proj-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            backdrop-filter: blur(4px);
+            z-index: 9000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .proj-modal-overlay.active { display: flex; }
+        .proj-modal-box {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 780px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,.35);
+            animation: modalIn .3s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(.93) translateY(20px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .proj-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(0,0,0,.45);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.3rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+            transition: background .2s;
+        }
+        .proj-modal-close:hover { background: rgba(0,0,0,.75); }
+        .proj-modal-img-wrap {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+        .proj-modal-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .proj-modal-badge {
+            position: absolute;
+            bottom: 14px;
+            left: 18px;
+            background: var(--primary, #8b1a1a);
+            color: #fff;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .3rem .75rem;
+            border-radius: 20px;
+        }
+        .proj-modal-body {
+            padding: 1.75rem 2rem 2rem;
+        }
+        .proj-modal-body h3 {
+            font-size: 1.45rem;
+            margin: 0 0 .75rem;
+            color: #1a1a1a;
+        }
+        .proj-modal-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: .85rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        .proj-modal-meta i { color: var(--primary, #8b1a1a); margin-right: .35rem; }
+        .proj-modal-body p {
+            font-size: .97rem;
+            line-height: 1.75;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        .proj-modal-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--primary, #8b1a1a);
+            color: #fff;
+            padding: .7rem 1.6rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: .9rem;
+            text-decoration: none;
+            transition: background .2s, transform .2s;
+        }
+        .proj-modal-cta:hover { background: #6e1414; transform: translateY(-2px); }
+        @media (max-width: 540px) {
+            .proj-modal-img-wrap { height: 200px; }
+            .proj-modal-body { padding: 1.25rem 1.25rem 1.5rem; }
+            .proj-modal-meta { flex-direction: column; gap: .5rem; }
+        }
+
         /* ─── WHATSAPP FLOAT ─── */
         .whatsapp-float {
             position: fixed;
@@ -1002,7 +1130,7 @@
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -1011,7 +1139,7 @@
             transition: all 0.3s ease;
             animation: pulse-wa 2s infinite;
         }
-        
+
         .whatsapp-float:hover {
             transform: scale(1.1) translateY(-5px);
             background-color: #1ebe57;
@@ -1019,9 +1147,17 @@
         }
 
         @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
         }
 
         /* ─── FOOTER ─── */
@@ -1344,7 +1480,6 @@
                 min-height: 340px;
             }
         }
-
     </style>
 </head>
 
@@ -1407,14 +1542,8 @@
                     <a href="#services" class="hero-btn">Our Services <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="hero-slide slide3">
-                <div class="hero-content">
-                    <span class="hero-tag">Quality Guaranteed</span>
-                    <h2>Your Vision, Our Expertise</h2>
-                    <p>Personalized approach to every project — communication and transparency are our core values.</p>
-                    <a href="#appointment" class="hero-btn">Book Appointment <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+            <div class="hero-slide slide4"></div>
+            <div class="hero-slide slide5"></div>
         </div>
         <button class="hero-arrow left" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
         <button class="hero-arrow right" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
@@ -1422,17 +1551,10 @@
             <button class="hero-dot active" data-index="0"></button>
             <button class="hero-dot" data-index="1"></button>
             <button class="hero-dot" data-index="2"></button>
+            <button class="hero-dot" data-index="3"></button>
+            <button class="hero-dot" data-index="4"></button>
         </div>
     </section>
-
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-        <div class="trust-item"><i class="fas fa-shield-halved"></i> <strong>Licensed & Insured</strong></div>
-        <div class="trust-item"><i class="fas fa-clock"></i> <strong>Since 2021</strong></div>
-        <div class="trust-item"><i class="fas fa-map-marker-alt"></i> <strong>Locally Owned</strong> — San Nicolaas
-        </div>
-        <div class="trust-item"><i class="fas fa-phone"></i> <strong>+297-660-2356</strong></div>
-    </div>
 
     <!-- WHAT WE PROVIDE -->
     <section class="provide-section">
@@ -1554,7 +1676,13 @@
                 <p>A showcase of our craftsmanship across residential, commercial, and infrastructure projects.</p>
             </div>
             <div class="projects-grid">
-                <div class="proj-card reveal">
+                <div class="proj-card reveal" onclick="openProjectModal(this)"
+                    data-title="Modern Villa Construction"
+                    data-cat="Residential"
+                    data-location="Noord, Aruba"
+                    data-year="2023"
+                    data-desc="Full ground-up construction of a modern two-storey residential villa. Scope included structural framework, concrete work, interior finishing, tiling, and landscaping. Delivered on time with premium materials sourced locally."
+                    data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&auto=format&q=80">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&q=80"
                         alt="Residential villa construction" loading="lazy">
                     <div class="proj-overlay">
@@ -1564,7 +1692,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="proj-card reveal reveal-delay-1">
+                <div class="proj-card reveal reveal-delay-1" onclick="openProjectModal(this)"
+                    data-title="Full System Plumbing Installation"
+                    data-cat="Plumbing"
+                    data-location="San Nicolaas, Aruba"
+                    data-year="2023"
+                    data-desc="Complete plumbing system installation for a newly built residential complex. Work covered water supply lines, drainage systems, fixture installation, pressure testing, and final inspections — ensuring full compliance with local codes."
+                    data-img="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=900&auto=format&q=80">
                     <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&auto=format&q=80"
                         alt="Plumbing installation" loading="lazy">
                     <div class="proj-overlay">
@@ -1574,7 +1708,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="proj-card reveal reveal-delay-2">
+                <div class="proj-card reveal reveal-delay-2" onclick="openProjectModal(this)"
+                    data-title="Exterior Paint & Finish"
+                    data-cat="Painting"
+                    data-location="Oranjestad, Aruba"
+                    data-year="2024"
+                    data-desc="Full exterior repaint and surface finishing for a large residential property. Services included surface preparation, sanding, priming, two-coat weather-resistant paint application, and trim detailing. Result was a clean, long-lasting finish."
+                    data-img="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&auto=format&q=80">
                     <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&q=80"
                         alt="Exterior painting" loading="lazy">
                     <div class="proj-overlay">
@@ -1584,8 +1724,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="proj-card reveal">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&auto=format&q=80"
+                <div class="proj-card reveal" onclick="openProjectModal(this)"
+                    data-title="Commercial Wiring & Panels"
+                    data-cat="Electrical"
+                    data-location="Balashi, Aruba"
+                    data-year="2024"
+                    data-desc="Full electrical installation for a commercial facility, including main distribution board setup, circuit wiring, panel upgrades, lighting systems, and safety switch installation. All work carried out by certified electricians to the highest safety standards."
+                    data-img="man-electrical-technician-working-switchboard-with-fuses_169016-24062.jpg.avif">
+                    <img src="man-electrical-technician-working-switchboard-with-fuses_169016-24062.jpg.avif"
                         alt="Electrical wiring project" loading="lazy">
                     <div class="proj-overlay">
                         <div>
@@ -1594,7 +1740,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="proj-card reveal reveal-delay-1">
+                <div class="proj-card reveal reveal-delay-1" onclick="openProjectModal(this)"
+                    data-title="Commercial Building Project"
+                    data-cat="Construction"
+                    data-location="Oranjestad, Aruba"
+                    data-year="2022"
+                    data-desc="Multi-floor commercial building construction from foundation to roof. The project involved structural steelwork, concrete floors, facade cladding, MEP coordination, and full interior fit-out. Completed within budget and ahead of schedule."
+                    data-img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&auto=format&q=80">
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&q=80"
                         alt="Commercial building" loading="lazy">
                     <div class="proj-overlay">
@@ -1604,13 +1756,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="proj-card reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&auto=format&q=80"
-                        alt="Landscaping project" loading="lazy">
+                <div class="proj-card reveal reveal-delay-2" onclick="openProjectModal(this)"
+                    data-title="Road Marking & Painting"
+                    data-cat="Landscaping"
+                    data-location="San Nicolaas, Aruba"
+                    data-year="2024"
+                    data-desc="Road marking and surface painting for a public infrastructure project. Included crosswalk lines, directional arrows, parking bay markings, and reflective paint application. Work was completed overnight to minimise disruption to traffic flow."
+                    data-img="road-marking-street-lines-crosswalk-painting-white-asphalt-213358555.jpg.webp">
+                    <img src="road-marking-street-lines-crosswalk-painting-white-asphalt-213358555.jpg.webp"
+                        alt="Road marking project" loading="lazy">
                     <div class="proj-overlay">
                         <div>
                             <span class="proj-cat">Landscaping</span>
-                            <span>Garden Design & Hardscaping</span>
+                            <span>Painting & Finishing</span>
                         </div>
                     </div>
                 </div>
@@ -1647,8 +1805,11 @@
                     </div>
                     <div class="contact-info-item">
                         <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-                        <p><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                data-cfemail="d19cffa1b4a5a3bebfb8bdb8b091b0a3a4b3b0b9b8b6b9bcb0b8bfa5b4bfb0bfb2b4ffb2bebc">[email&#160;protected]</a>
+                        <p><strong>Email</strong>
+                            <a href="mailto:administrator@arubahighmaintenance.com"
+                                style="color: var(--text-light); text-decoration: none; word-break: break-all;">administrator@arubahighmaintenance.com</a><br>
+                            <a href="mailto:R.petronilia@arubahighmaintenance.com"
+                                style="color: var(--text-light); text-decoration: none; word-break: break-all;">R.petronilia@arubahighmaintenance.com</a>
                         </p>
                     </div>
                     <div class="contact-info-item">
@@ -1667,19 +1828,41 @@
                 <div class="contact-form-wrap reveal reveal-delay-1">
                     <h2>Send a Message</h2>
                     <div class="form-row">
-                        <div class="form-group"><input type="text" placeholder="Your Name *" required></div>
-                        <div class="form-group"><input type="email" placeholder="Your Email *" required></div>
+                        <div class="form-group"><input id="cf-name" type="text" placeholder="Your Name *" required></div>
+                        <div class="form-group"><input id="cf-email" type="email" placeholder="Your Email *" required></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><input type="text" placeholder="Subject"></div>
-                        <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
+                        <div class="form-group"><input id="cf-subject" type="text" placeholder="Subject"></div>
+                        <div class="form-group"><input id="cf-phone" type="tel" placeholder="Phone Number"></div>
                     </div>
-                    <div class="form-group"><textarea placeholder="Your message (optional)" rows="5"></textarea></div>
-                    <button class="form-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+                    <div class="form-group"><textarea id="cf-message" placeholder="Your message (optional)" rows="5"></textarea></div>
+                    <button class="form-submit" onclick="sendToWhatsApp()">Send Message <i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- PROJECT MODAL -->
+    <div id="projectModal" class="proj-modal-overlay" onclick="closeProjectModal(event)">
+        <div class="proj-modal-box">
+            <button class="proj-modal-close" onclick="closeProjectModal()">&times;</button>
+            <div class="proj-modal-img-wrap">
+                <img id="pm-img" src="" alt="">
+                <span id="pm-cat" class="proj-modal-badge"></span>
+            </div>
+            <div class="proj-modal-body">
+                <h3 id="pm-title"></h3>
+                <div class="proj-modal-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> <span id="pm-location"></span></span>
+                    <span><i class="fas fa-calendar-alt"></i> <span id="pm-year"></span></span>
+                </div>
+                <p id="pm-desc"></p>
+                <a href="#contact" class="proj-modal-cta" onclick="closeProjectModal()">
+                    <i class="fas fa-comments"></i> Discuss a Similar Project
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -1722,10 +1905,16 @@
                     <h4>Contact</h4>
                     <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Caya Velp 6, San Nicolaas
                     </div>
-                    <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> +297-660-2356</div>
-                    <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a
-                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                            data-cfemail="771e1911183716050215161f1e101f1a161e19031219161914125914181a">[email&#160;protected]</a>
+                    <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> +297-660-2356 / +297-662-9817
+                    </div>
+                    <div class="footer-contact-item" style="align-items: flex-start;">
+                        <i class="fas fa-envelope" style="margin-top: 5px;"></i>
+                        <div style="word-break: break-all;">
+                            <a href="mailto:administrator@arubahighmaintenance.com"
+                                style="color: inherit; text-decoration: none;">administrator@arubahighmaintenance.com</a><br>
+                            <a href="mailto:R.petronilia@arubahighmaintenance.com"
+                                style="color: inherit; text-decoration: none;">R.petronilia@arubahighmaintenance.com</a>
+                        </div>
                     </div>
                     <div class="footer-contact-item"><i class="fas fa-clock"></i> Mon-Fri 7:00 – 17:00</div>
                 </div>
@@ -1739,11 +1928,52 @@
 
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://api.whatsapp.com/send/?phone=%2B2976629817" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <a href="https://api.whatsapp.com/send/?phone=%2B2976629817" class="whatsapp-float" target="_blank"
+        title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
+        function openProjectModal(card) {
+            var modal = document.getElementById('projectModal');
+            document.getElementById('pm-img').src = card.dataset.img;
+            document.getElementById('pm-img').alt = card.dataset.title;
+            document.getElementById('pm-cat').textContent = card.dataset.cat;
+            document.getElementById('pm-title').textContent = card.dataset.title;
+            document.getElementById('pm-location').textContent = card.dataset.location;
+            document.getElementById('pm-year').textContent = card.dataset.year;
+            document.getElementById('pm-desc').textContent = card.dataset.desc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeProjectModal(e) {
+            if (e && e.type === 'click' && e.target !== document.getElementById('projectModal')) return;
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { document.getElementById('projectModal').classList.remove('active'); document.body.style.overflow = ''; }
+        });
+
+        function sendToWhatsApp() {
+            var name = document.getElementById('cf-name').value.trim();
+            var email = document.getElementById('cf-email').value.trim();
+            var subject = document.getElementById('cf-subject').value.trim();
+            var phone = document.getElementById('cf-phone').value.trim();
+            var message = document.getElementById('cf-message').value.trim();
+
+            if (!name) { alert('Please enter your name.'); return; }
+
+            var text = 'Hello Aruba High Maintenance!\n\n';
+            text += 'Name: ' + name + '\n';
+            if (email) text += 'Email: ' + email + '\n';
+            if (phone) text += 'Phone: ' + phone + '\n';
+            if (subject) text += 'Subject: ' + subject + '\n';
+            if (message) text += 'Message: ' + message + '\n';
+
+            var url = 'https://wa.me/2976629817?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
         (function () {
             // ─── SLIDER ───
             const slider = document.getElementById('heroSlider');
@@ -1818,4 +2048,5 @@
         })();
     </script>
 </body>
+
 </html>
